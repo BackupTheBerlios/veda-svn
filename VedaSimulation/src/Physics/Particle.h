@@ -7,6 +7,8 @@ namespace Physics
 template<class TReal>
 class Particle
 {
+	TReal sxx, syy, szz;
+	TReal omg;
 public:
 	Particle() { }
 	virtual ~Particle() { }
