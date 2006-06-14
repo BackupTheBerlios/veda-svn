@@ -10,7 +10,7 @@ class Log
 protected:
 	ostream & m_Os;
 public:
-	Logger(ostream & os):
+	Log(ostream & os):
 		m_Os(os) { }
 		
 	virtual ~Log() { }

@@ -2,4 +2,4 @@ import os
 
 Import('env')
 env.SConscript('Geometry/SConscript')
-env.Program('test.exe', ['main.cpp', 'Logger.cpp'], LIBS=['geometry'], LIBPATH='Geometry')
+env.Program('test.exe', ['main.cpp', 'Log.cpp'], LIBS=['geometry'], LIBPATH='Geometry')
