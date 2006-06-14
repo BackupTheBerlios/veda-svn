@@ -1,6 +1,6 @@
 }q(Umain.oq(cSCons.Node.FS
 BuildInfo
-qoq}q(UbsigqU 6b8ccb658c9e8102a60032d892ae9bb0qU	bimplicitq]q	(Usrc\Geometry\Polygon.hq
-Usrc\Geometry\Vector.hqeUbdependsq]qUbdependsigsq]qUbactsigqU a2457987ebd246648a8785d915eee776qUbimplicitsigsq]q(U c8b393435148210e1dab1fcfb7f671daqU 84d31324da441963b040c3d7f4e6b260qeUbactqUg++ -c -o main.o main.cppqUbsourcesq]qUsrc\main.cppqaUbsourcesigsq]qU 41cbf6c38bb9e9e9cc6d43975d0c6e70qaubUmain.exeq(hoq}q (hU 99fcd03de598d5a39d883151e2a8ac70q!h]q"h]q#h]q$hU 217d68035298c06b78d2bbc67f6d4ae7q%h]q&hUg++ -o main.exe main.oq'h]q(U
-bin\main.oq)ah]q*U 0ca8213b1ae340f42ac0f488dd4d2018q+aubUtest.exeq,(hoq-}q.(Ubsigq/U a5c565bf89c3dee1a7e0451cc165e820q0U	bimplicitq1]q2Ubin\Geometry\libgeometry.aq3aUbdependsq4]q5Ubdependsigsq6]q7Ubactsigq8U ca9fd31834a19c05188e3310511b0872q9Ubimplicitsigsq:]q;U 868fca5a6a32f193309221ca400c3984q<aUbactq=U!g++ -o test.exe main.o -lgeometryq>Ubsourcesq?]q@U
-bin\main.oqAaUbsourcesigsqB]qChaubu.
+qoq}q(UbsigqU c9160ad54b779a0f22a425d03bac17fcqU	bimplicitq]q	(Usrc\Geometry\Grid.hq
+Usrc\Geometry\Polygon.hqUsrc\Geometry\Vector.hqeUbdependsq]qUbdependsigsq]qUbactsigqU a2457987ebd246648a8785d915eee776qUbimplicitsigsq]q(U e385b1d3f2550cf3c094aabdb0dbd043qU 2703aec189b2f7f131eae5f5ebee02d6qU a58bc6f62e1825534226f6e808bc3760qeUbactqUg++ -c -o main.o main.cppqUbsourcesq]qUsrc\main.cppqaUbsourcesigsq]qU f0b8d6ec71ee476169ab23346d510724qaubUmain.exeq (hoq!}q"(hU 99fcd03de598d5a39d883151e2a8ac70q#h]q$h]q%h]q&hU 217d68035298c06b78d2bbc67f6d4ae7q'h]q(hUg++ -o main.exe main.oq)h]q*U
+bin\main.oq+ah]q,U 0ca8213b1ae340f42ac0f488dd4d2018q-aubUtest.exeq.(hoq/}q0(Ubsigq1U ba4bb20d214799013f7edcf411adc56aq2U	bimplicitq3]q4Ubin\Geometry\libgeometry.aq5aUbdependsq6]q7Ubdependsigsq8]q9Ubactsigq:U ca9fd31834a19c05188e3310511b0872q;Ubimplicitsigsq<]q=U b6eda8f557f78111bfb019e715f6cb3aq>aUbactq?U!g++ -o test.exe main.o -lgeometryq@UbsourcesqA]qBU
+bin\main.oqCaUbsourcesigsqD]qEhaubu.

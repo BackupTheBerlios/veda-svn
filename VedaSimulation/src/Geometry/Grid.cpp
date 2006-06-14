@@ -1,14 +1,8 @@
 #include "Grid.h"
 
+#include "string.h"
+
 namespace Geometry
 {
-
-Grid::Grid()
-{
-}
-
-Grid::~Grid()
-{
-}
 
 }

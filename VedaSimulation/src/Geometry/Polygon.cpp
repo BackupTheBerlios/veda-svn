@@ -3,12 +3,4 @@
 namespace Geometry
 {
 
-Polygon::Polygon()
-{
-}
-
-Polygon::~Polygon()
-{
-}
-
 }

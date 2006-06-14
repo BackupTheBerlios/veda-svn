@@ -6,4 +6,4 @@ env = Environment(
 	tools=['mingw', 'zip'])
 	
 Import('env')
-env.Library('geometry', ['Polygon.cpp', 'Vector.cpp'])
+env.Library('geometry', ['Polygon.cpp', 'Vector.cpp', 'Grid.cpp'])
