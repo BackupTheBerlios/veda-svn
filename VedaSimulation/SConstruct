@@ -1,0 +1,12 @@
+import os
+
+BuildDir('bin', 'src', duplicate=0)
+
+env = Environment(
+	platform='win32', 
+	ENV = {'PATH' : os.environ['PATH']}, 
+	tools=['mingw', 'zip'])
+	
+Export('env')
+
+SConscript('bin/SConscript', 'env')

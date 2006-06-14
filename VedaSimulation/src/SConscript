@@ -1,0 +1,5 @@
+import os
+
+Import('env')
+env.SConscript('Geometry/SConscript')
+env.Program('test.exe', 'main.cpp', LIBS=['geometry'], LIBPATH='Geometry')

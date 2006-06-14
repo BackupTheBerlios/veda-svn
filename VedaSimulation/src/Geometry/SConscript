@@ -1,0 +1,9 @@
+import os
+
+env = Environment(
+	platform='win32', 
+	ENV = {'PATH' : os.environ['PATH']}, 
+	tools=['mingw', 'zip'])
+	
+Import('env')
+env.Library('geometry', ['Polygon.cpp', 'Vector.cpp'])
