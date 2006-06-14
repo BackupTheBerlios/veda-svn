@@ -15,7 +15,6 @@ public:
 		
 	virtual ~Log() { }
 	
-	
 	Log& operator<<(const char * str);
 };
 
