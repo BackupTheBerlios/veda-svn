@@ -4,6 +4,8 @@
 #include "Geometry/Polygon.h"
 #include "Geometry/Grid.h"
 
+#include "Log.h"
+
 using namespace std;
 
 using namespace Geometry;
@@ -16,6 +18,10 @@ ostream & operator<<(ostream & os, Vector<TReal> & v)
 
 int main(int argc, char** argv)
 {
+	Log log(cout);
+	
+	log<<"start";
+	
 	for(int i=0; i<10; ++i){
 		cout<<"Preved medved."<<endl;
 	}
@@ -38,6 +44,8 @@ int main(int argc, char** argv)
 	v0 = v;
 	
 	cout<<v0<<endl;
+	
+	log<<"Finish";
 	
 	return 0;
 }
