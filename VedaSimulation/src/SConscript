@@ -2,4 +2,8 @@ import os
 
 Import('env')
 env.SConscript('Geometry/SConscript')
-env.Program('test.exe', ['main.cpp', 'Log.cpp'], LIBS=['geometry'], LIBPATH='Geometry')
+env.SConscript('Physics/SConscript')
+env.SConscript('Packing/SConscript')
+
+env.Program('main.exe', ['main.cpp', 'Log.cpp', 'Geometry/Grid.o'], LIBS='tinyxml', LIBPATH='#external/tinyxml')
+env.Program('testInit.exe', ['main.cpp', 'Log.cpp', 'Geometry/Grid.o'], LIBS='tinyxml', LIBPATH='#external/tinyxml')

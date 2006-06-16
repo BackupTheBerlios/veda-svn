@@ -3,12 +3,5 @@
 namespace Physics
 {
 
-Area::Area()
-{
-}
-
-Area::~Area()
-{
-}
 
 }

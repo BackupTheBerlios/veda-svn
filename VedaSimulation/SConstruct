@@ -5,8 +5,11 @@ BuildDir('bin', 'src', duplicate=0)
 env = Environment(
 	platform='win32', 
 	ENV = {'PATH' : os.environ['PATH']}, 
-	tools=['mingw', 'zip'])
+	tools=['mingw', 'zip'],
+	CPPPATH='#/external')
 	
 Export('env')
 
-SConscript('bin/SConscript', 'env')
+env.SConscript('external/SConscript', 'env')
+
+env.SConscript('bin/SConscript', 'env')

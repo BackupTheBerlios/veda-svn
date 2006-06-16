@@ -1,9 +1,5 @@
-import os
+# Geometry build
 
-env = Environment(
-	platform='win32', 
-	ENV = {'PATH' : os.environ['PATH']}, 
-	tools=['mingw', 'zip'])
-	
 Import('env')
-env.Library('geometry', ['Polygon.cpp', 'Vector.cpp', 'Grid.cpp'])
+
+env.Object(['Polygon.cpp', 'Vector.cpp', 'Grid.cpp'])

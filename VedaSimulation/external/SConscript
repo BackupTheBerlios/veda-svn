@@ -1,0 +1,7 @@
+# other libraries build
+
+print "building other libraries"
+
+Import('env')
+
+env.SConscript('tinyxml/SConscript')

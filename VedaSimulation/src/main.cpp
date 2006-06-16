@@ -1,51 +1,65 @@
 #include <iostream>
+#include <sstream>
+#include <string>
+
+#include <tinyxml/tinyxml.h>
+
+#include "Log.h"
 
 #include "Geometry/Vector.h"
 #include "Geometry/Polygon.h"
 #include "Geometry/Grid.h"
 
-#include "Log.h"
+#include "Packing/OArchive.h"
+#include "Packing/IArchive.h"
+#include "Packing/Archive.h"
+
+#include "Packing/OXmlArchive.h"
+#include "Packing/IXmlArchive.h"
+
+#include "Physics/Particle.h"
+#include "Physics/Area.h"
 
 using namespace std;
 
 using namespace Geometry;
-
-template<class TReal>
-ostream & operator<<(ostream & os, Vector<TReal> & v)
-{
-	return os<<"Vector: "<<v.x<<", "<<v.y<<", "<<v.z;
-}
+using namespace Physics;
+using namespace Packing;
 
 int main(int argc, char** argv)
 {
-	Log log(cout);
+	/* test serialization */
 	
-	log<<"start";
+	Particle<double, double> particle(1, 2, 3), part(0, 0, 0);
 	
-	for(int i=0; i<10; ++i){
-		cout<<"Preved medved."<<endl;
-	}
 	
-	Polygon<double> polygon;
-	Grid<double> grid;
+	stringstream testStream;
+	OArchive oar(testStream);
 	
-	cout<<grid.get_Name()<<endl;
+	oar<<particle;
 	
-	Vector<double> v, v0;
+	IArchive iar(testStream);
 	
-	v.x = 1; v.y = 2; v.z = 3;
+	iar>>part;
 	
-	cout<<v<<endl;
+	cout<<"Track particle: "<<part.x<<endl;
 	
-	v0.x = 54;
+	OArchive coar(cout);
 	
-	cout<<v0<<endl;
+	cout<<"Test particle archiving"<<endl;
+	coar<<part;
+	coar.close();
+	cout<<endl;
 	
-	v0 = v;
+	Area<double, double> area;
 	
-	cout<<v0<<endl;
+	OArchive coar2(cout);
 	
-	log<<"Finish";
+	cout<<"Test area archiving"<<endl;
+	
+	coar2<<area;
+	coar2.close();
+	cout<<endl;
 	
 	return 0;
 }
