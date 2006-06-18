@@ -7,7 +7,6 @@
 #include "../Geometry/Grid.h"
 
 #include "../Packing/Archive.h"
-#include "../Packing/OArchive.h"
 
 #include "Particle.h"
 
@@ -29,18 +28,26 @@ class Area
 	Particle<TPhys, TMath> m_particle;
 	Particle<TPhys, TMath> m_ethalon;
 	
-	string name;
+	string info;
 public:
 	Area():
-		m_particle(5, 5, 5), m_ethalon(7, 7, 7), name("MegaArea")
+		m_particle(5, 5, 5), m_ethalon(7, 7, 7), info("JustConstructed")
 	{ }
 	virtual ~Area() { }
 	
-	template<class TArchive>
-	void linkArchive(TArchive & ar)
+	void initTest()
 	{
-		ar & m_particle & m_ethalon;
-		ar & name;
+		m_particle = Vector<TMath>(1, 1, 1);
+		m_ethalon = Vector<TMath>(4, 5, 6);
+	}
+	
+	template<class TArchive>
+	void linkArchive(TArchive & ar, const int v=0)
+	{
+		ar & nvp("particle", m_particle)
+		   & nvp("ethalon", m_ethalon);
+		ar & nvp("info", info);
+		ar & nvp("grid", m_grid);
 	}
 };
 

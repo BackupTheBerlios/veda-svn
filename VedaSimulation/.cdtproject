@@ -50,6 +50,7 @@
 </item>
 <item id="org.eclipse.cdt.core.pathentry">
 <pathentry base-path="VedaSimulation" include="external" kind="inc" path="" system="true"/>
+<pathentry base-path="VedaSimulation" include="src" kind="inc" path="" system="true"/>
 <pathentry kind="src" path="src"/>
 <pathentry kind="out" path=""/>
 <pathentry kind="con" path="org.eclipse.cdt.make.core.DISCOVERED_SCANNER_INFO"/>

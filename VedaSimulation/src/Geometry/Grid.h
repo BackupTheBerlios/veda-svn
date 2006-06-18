@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include "Packing/Archive.h"
+
 #include "Vector.h"
 #include "Polygon.h"
 
@@ -14,8 +16,10 @@ namespace Geometry
 template<class TReal>
 class Grid
 {
-	vector<Polygon<TReal> > m_Domens;
-	vector<Vector<TReal> > m_Centers;
+	vector<Polygon<TReal> > domens;
+	vector<Vector<TReal> > centers;
+	
+	Vector<TReal> center;
 public:
 	Grid() { }
 
@@ -26,6 +30,12 @@ public:
 		char* res = new char[80];
 		strcpy(res, "I'm Grid, friend!");
 		return res;
+	}
+	
+	template<class TArchive>
+	void linkArchive(TArchive & ar, const int v=0)
+	{
+		ar & nvp("center", center);
 	}
 };
 

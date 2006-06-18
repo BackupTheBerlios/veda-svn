@@ -3,11 +3,12 @@
 
 #include <string>
 
-#include "../Packing/Archive.h"
-#include "../Packing/OArchive.h"
+#include "Geometry/Vector.h"
+#include "Packing/Archive.h"
 
 using namespace std;
 
+using namespace Geometry;
 using namespace Packing;
 
 namespace Physics
@@ -36,12 +37,21 @@ public:
 	
 	virtual ~Particle() { }
 	
-	template<class TArchive>
-	void linkArchive(TArchive & ar)
+	Particle<TPhys, TMath> & operator=(const Vector<TMath> & rhs)
 	{
-		ar & name & x & y & z;
-		ar & sxx & syy & szz;
+		x = rhs.x; y = rhs.y; z = rhs.z;
+		return *this;
 	}
+	
+	template<class TArchive>
+	void linkArchive(TArchive & ar, const int v)
+	{
+		ar & nvp("name", name)
+		   & nvp("x", x)
+		   & nvp("y", y)
+		   & nvp("z", z);
+	}
+	
 };
 
 }

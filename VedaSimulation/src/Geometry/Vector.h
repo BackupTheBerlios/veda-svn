@@ -3,6 +3,10 @@
 
 #include <string.h>
 
+#include "Packing/Archive.h"
+
+using Packing::nvp;
+
 namespace Geometry
 {
 
@@ -33,6 +37,14 @@ public:
 	{
 		x += v.x; y += v.y; z += v.z;
 		return *this;
+	}
+	
+	template<class TArchive>
+	void linkArchive(TArchive & ar, const int v=0)
+	{
+		ar & nvp("x", x) & nvp("y", y);
+		if(v == 1)
+			ar & nvp("z", z);
 	}
 };
 

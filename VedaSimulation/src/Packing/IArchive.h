@@ -44,17 +44,16 @@ public:
 	template<class T>
 	IArchive & operator&(T & item)
 	{
-		(*this)>>(item);
+		if(!opened) return;
+		read(item);
 		return *this;
 	}
 	
-	/* main operator */
-	
 	template<class T>
-	IArchive & operator>>(T & item)
+	IArchive & operator&(Named<T> named)
 	{
-		if(!opened) open();
-		read(item);
+		if(!opened) return;
+		read(named.item);
 		return *this;
 	}
 	
@@ -69,7 +68,7 @@ protected:
 	template<class T>
 	void read(T & item)
 	{
-		item.linkArchive(*this);
+		item.linkArchive(*this, version);
 	}
 	
 	/* standard */

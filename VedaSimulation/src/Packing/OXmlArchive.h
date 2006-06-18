@@ -28,11 +28,18 @@ public:
 	{
 		Archive::open();
 		
-		m_document;
+		m_document.LinkEndChild(new TiXmlElement(c_RootTag));
+		
+		m_pElement = m_document.RootElement();
+		
+		m_pElement->SetAttribute(c_VersionTag, version);
 	}
 	
 	virtual void close()
 	{
+		m_os<<m_document;
+		
+		Archive::close();
 	}
 	
 	/* link operator */
@@ -40,23 +47,15 @@ public:
 	template<class T>
 	OXmlArchive & operator&(T & item)
 	{
-		return (*this)<<(item);
-	}
-	
-	/* main operator */
-	
-	template<class T>
-	OXmlArchive & operator<<(T & item)
-	{
-		if(!opened) open();
-		write(item);
+		if(opened) (*this) & nvp(c_ItemTag, item);
 		return *this;
 	}
 	
 	template<class T>
-	OXmlArchive & operator&(Named<T> named)
+	OXmlArchive & operator&(Named<T> item)
 	{
-		return (*this)<<(named);
+		if(opened) write(item);
+		return *this;
 	}
 
 protected:
@@ -68,25 +67,40 @@ protected:
 	/* common */
 	
 	template<class T>
-	void write(T & item)
+	void write(Named<T> item)
 	{
-		item.linkArchive(*this);
-		m_os<<endl;
+		TiXmlElement * pOldElem = m_pElement;
+		
+		m_pElement = m_pElement->LinkEndChild(new TiXmlElement(item.name))->ToElement();
+
+		item.item.linkArchive(*this, version);
+		
+		m_pElement = pOldElem;
 	}
 	
 	/* standard */
 	
-	void write(double & item) { m_os<<item<<" "; }
+	void write(Named<double> & item)
+	{ m_pElement->SetDoubleAttribute(item.name, item.item); }
 	
-	void write(int & item) { m_os<<item<<" "; }
+	void write(Named<int> & item)
+	{ m_pElement->SetAttribute(item.name, item.item); }
+	
+	void write(Named<char> & item)
+	{ 
+		char str[2]; str[0] = item.item; str[1] = '\0';
+		m_pElement->SetAttribute(item.name, str); 
+	}
 
-	void write(char & item) { m_os<<item<<" "; }
+	void write(Named<const char*> & item) 
+	{
+		m_pElement->SetAttribute(item.name, item.item);
+	}
 	
-	void write(string & item) { m_os<<item<<" "; }
-	
-	void write(const char* item) { m_os<<item<<" "; }
-		
-
+	void write(Named<string> & item)
+	{
+		m_pElement->SetAttribute(item.name, item.item.c_str());
+	}
 };
 
 }

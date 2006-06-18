@@ -2,6 +2,7 @@
 #define IXMLARCHIVE_H_
 
 #include <istream>
+#include <string>
 
 #include <tinyxml/tinyxml.h>
 
@@ -32,6 +33,8 @@ public:
 		m_is>>m_document;
 		
 		m_pElement = m_document.RootElement();
+		
+		m_pElement->Attribute(c_VersionTag, &version);
 	}
 	
 	virtual void close()
@@ -46,17 +49,14 @@ public:
 	template<class T>
 	IXmlArchive & operator&(T & item)
 	{
-		(*this)>>(item);
+		if(opened) (*this) & nvp(c_ItemTag, item);
 		return *this;
 	}
 	
-	/* main operator */
-	
 	template<class T>
-	IXmlArchive & operator>>(T & item)
+	IXmlArchive & operator&(Named<T> item)
 	{
-		if(!opened) open();
-		read(item);
+		if(opened) read(item);
 		return *this;
 	}
 	
@@ -69,20 +69,39 @@ protected:
 	/* common */
 	
 	template<class T>
-	void read(T & item)
+	void read(Named<T> item)
 	{
-		item.linkArchive(*this);
+		TiXmlElement * pOldElem = m_pElement;
+		
+		m_pElement = m_pElement->FirstChildElement(item.name);
+
+		item.item.linkArchive(*this, version);
+		
+		m_pElement = pOldElem;
 	}
 	
 	/* standard */
 	
-	void read(double & item) { m_is>>item; }
+	void read(Named<double> & item)
+	{ m_pElement->Attribute(item.name, &item.item); }
 	
-	void read(int & item) { m_is>>item; }
+	void read(Named<int> & item)
+	{ m_pElement->Attribute(item.name, &item.item); }
 	
-	void read(char & item) { m_is>>item; }
+	void read(Named<char> & item)
+	{ 
+		item.item = m_pElement->Attribute(item.name)[0];
+	}
+
+	void read(Named<char*> & item) 
+	{
+		strcpy(item.item, m_pElement->Attribute(item.name));
+	}
 	
-	void read(string & item) { m_is>>item; }
+	void read(Named<string> & item)
+	{
+		item.item = m_pElement->Attribute(item.name);
+	}
 };
 
 }

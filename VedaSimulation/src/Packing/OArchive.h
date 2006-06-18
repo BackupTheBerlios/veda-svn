@@ -42,16 +42,14 @@ public:
 	template<class T>
 	OArchive & operator&(T & item)
 	{
-		return (*this)<<(item);
+		if(opened) write(item);
+		return *this;
 	}
 	
-	/* main operator */
-	
 	template<class T>
-	OArchive & operator<<(T & item)
+	OArchive & operator&(Named<T> named)
 	{
-		if(!opened) open();
-		write(item);
+		if(opened) write(named.item);
 		return *this;
 	}
 	
@@ -66,10 +64,10 @@ protected:
 	template<class T>
 	void write(T & item)
 	{
-		item.linkArchive(*this);
+		item.linkArchive(*this, version);
 		m_os<<endl;
 	}
-	
+		
 	/* standard */
 	
 	void write(double & item) { m_os<<item<<" "; }

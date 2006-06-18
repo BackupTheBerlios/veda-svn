@@ -30,36 +30,46 @@ int main(int argc, char** argv)
 {
 	/* test serialization */
 	
-	Particle<double, double> particle(1, 2, 3), part(0, 0, 0);
-	
-	
-	stringstream testStream;
-	OArchive oar(testStream);
-	
-	oar<<particle;
-	
-	IArchive iar(testStream);
-	
-	iar>>part;
-	
-	cout<<"Track particle: "<<part.x<<endl;
+	Area<double, double> area;
 	
 	OArchive coar(cout);
 	
-	cout<<"Test particle archiving"<<endl;
-	coar<<part;
-	coar.close();
-	cout<<endl;
-	
-	Area<double, double> area;
-	
-	OArchive coar2(cout);
-	
 	cout<<"Test area archiving"<<endl;
 	
-	coar2<<area;
-	coar2.close();
+	coar.open();
+	coar & area;
+	coar.close();
+	
 	cout<<endl;
+	
+	area.initTest();
+	
+	int n = 3, m = 5;
+	
+	ofstream ofs("test.xml");
+	OXmlArchive oxml(ofs);
+	
+	oxml.open();
+	oxml & nvp("area", area);
+	oxml & nvp("n", n) & m;
+	oxml.close();
+	
+	ofs.close();
+	
+	Area<double, double> iarea;
+	
+	ifstream ifs("test.xml");
+	IXmlArchive ixml(ifs);
+	
+	ixml.open();
+	ixml & nvp("area", iarea);
+	ixml.close();
+	
+	ifs.close();
+	
+	coar.open();
+	coar & nvp("iarea", iarea);
+	coar.close();
 	
 	return 0;
 }

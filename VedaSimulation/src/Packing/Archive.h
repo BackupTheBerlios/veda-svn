@@ -13,13 +13,19 @@ namespace Packing
 class Archive
 {
 protected:
+	static const int c_NameLength = 32;
+	
+	static char* c_ItemTag;
+	static char* c_RootTag;
+	static char* c_VersionTag;
+
 	int version; /* versioning NYE */
 	bool opened;
 public:
-	Archive():
-		opened(false)
+	Archive(const int n_version = 0):
+		opened(false), version(n_version)
 	{ }
-	virtual ~Archive() { }
+	virtual ~Archive() { if(opened) close(); }
 	
 	virtual void open() { opened = true; }
 	virtual void close() { opened = false; }
@@ -27,7 +33,6 @@ public:
 	int get_Version() { return version; }
 	void set_Vesion(int n_version) { version = n_version; }
 };
-
 
 /*
  *	name-value pair
@@ -49,12 +54,6 @@ struct Named
 		name(rhs.name), item(rhs.item)
 	{ }
 	
-	template<class TArchive>
-	void linkArchive(TArchive & ar)
-	{
-		ar & name & value();
-	}
-	
 	T & value()
 	{
 		return item;
@@ -64,7 +63,7 @@ struct Named
 /* fabric */
 
 template<class T>
-Named<T> makeNamed(const char* n_name, T & n_item)
+Named<T> nvp(const char* n_name, T & n_item)
 {
 	return Named<T>(n_name, n_item);
 }
