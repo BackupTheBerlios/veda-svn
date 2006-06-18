@@ -37,7 +37,7 @@ public:
 	
 	virtual ~Particle() { }
 	
-	Particle<TPhys, TMath> & operator=(const Vector<TMath> & rhs)
+	Particle<TPhys, TMath> & operator=(const Point<TMath> & rhs)
 	{
 		x = rhs.x; y = rhs.y; z = rhs.z;
 		return *this;

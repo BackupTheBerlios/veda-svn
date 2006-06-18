@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "Vector.h"
+#include "Point.h"
 
 using namespace std;
 
@@ -13,7 +13,7 @@ namespace Geometry
 template<class TReal>
 class Polygon
 {
-	vector<Vector<TReal> > m_Vectors;
+	vector<Point<TReal> > m_points;
 public:
 	Polygon() { }
 	virtual ~Polygon() { }

@@ -5,7 +5,7 @@
 
 #include "Packing/Archive.h"
 
-#include "Vector.h"
+#include "Point.h"
 #include "Polygon.h"
 
 using namespace std;
@@ -17,9 +17,9 @@ template<class TReal>
 class Grid
 {
 	vector<Polygon<TReal> > domens;
-	vector<Vector<TReal> > centers;
+	vector<Point<TReal> > centers;
 	
-	Vector<TReal> center;
+	Point<TReal> center;
 public:
 	Grid() { }
 

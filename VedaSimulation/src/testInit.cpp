@@ -22,7 +22,7 @@ using namespace Physics;
 using namespace Packing;
 
 template<class TReal>
-ostream & operator<<(ostream & os, Vector<TReal> & v)
+ostream & operator<<(ostream & os, Point<TReal> & v)
 {
 	return os<<"Vector: "<<v.x<<", "<<v.y<<", "<<v.z;
 }

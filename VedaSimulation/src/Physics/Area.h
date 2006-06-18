@@ -37,8 +37,8 @@ public:
 	
 	void initTest()
 	{
-		m_particle = Vector<TMath>(1, 1, 1);
-		m_ethalon = Vector<TMath>(4, 5, 6);
+		m_particle = Point<TMath>(1, 1, 1);
+		m_ethalon = Point<TMath>(4, 5, 6);
 	}
 	
 	template<class TArchive>
