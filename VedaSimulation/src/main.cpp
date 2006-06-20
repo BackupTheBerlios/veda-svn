@@ -6,7 +6,7 @@
 
 #include "Log.h"
 
-#include "Geometry/Vector.h"
+#include "Geometry/Point.h"
 #include "Geometry/Polygon.h"
 #include "Geometry/Grid.h"
 
@@ -70,6 +70,16 @@ int main(int argc, char** argv)
 	coar.open();
 	coar & nvp("iarea", iarea);
 	coar.close();
+	
+	/* polygon out */
+	
+	Polygon<double> poly;
+	
+	OXmlArchive oxml2(cout);
+	
+	oxml2.open();
+	oxml2 & nvp("poly", poly);
+	oxml2.close();
 	
 	return 0;
 }

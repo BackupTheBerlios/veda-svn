@@ -11,5 +11,7 @@ env.Program('main.exe',
         LIBS='tinyxml', LIBPATH='#external/tinyxml')
 env.Program('testInit.exe',
         ['main.cpp', 'Log.cpp',
-         'Geometry/Grid.o', 'Packing/Archive.o'],
+         'Geometry/Grid.o', 'Geometry/Polygon.o',
+         'Geometry/Line.o', 'Geometry/Point.o',
+         'Packing/Archive.o'],
         LIBS='tinyxml', LIBPATH='#external/tinyxml')

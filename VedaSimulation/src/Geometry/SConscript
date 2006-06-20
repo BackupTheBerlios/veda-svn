@@ -2,4 +2,4 @@
 
 Import('env')
 
-env.Object(['Polygon.cpp', 'Vector.cpp', 'Grid.cpp'])
+env.Object(['Polygon.cpp', 'Point.cpp', 'Line.cpp', 'Grid.cpp'])

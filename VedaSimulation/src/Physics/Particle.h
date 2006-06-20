@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "Geometry/Vector.h"
+#include "Geometry/Point.h"
 #include "Packing/Archive.h"
 
 using namespace std;
@@ -39,7 +39,7 @@ public:
 	
 	Particle<TPhys, TMath> & operator=(const Point<TMath> & rhs)
 	{
-		x = rhs.x; y = rhs.y; z = rhs.z;
+		x = rhs.x; y = rhs.y;
 		return *this;
 	}
 	

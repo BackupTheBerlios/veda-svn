@@ -4,7 +4,7 @@
 
 #include <tinyxml/tinyxml.h>
 
-#include "Geometry/Vector.h"
+#include "Geometry/Point.h"
 #include "Geometry/Polygon.h"
 #include "Geometry/Grid.h"
 

@@ -6,6 +6,7 @@
 #include "Packing/Archive.h"
 
 #include "Point.h"
+#include "Line.h"
 #include "Polygon.h"
 
 using namespace std;
@@ -30,6 +31,11 @@ public:
 		char* res = new char[80];
 		strcpy(res, "I'm Grid, friend!");
 		return res;
+	}
+	
+	void test()
+	{
+		Line<double> llline;
 	}
 	
 	template<class TArchive>
