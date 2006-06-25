@@ -3,8 +3,8 @@
 
 #include "Packing/Packing.h"
 
-#include "Math.h"
-#include "Point.h"
+#include "Math.hpp"
+#include "Point.hpp"
 
 namespace Geometry
 {
@@ -64,6 +64,34 @@ public:
 	Point<T> crossIn(Line& line);
 	
 	int oneSide(const Point<T> & p1, const Point<T> & p2);
+	
+	Point<T> cross(Line& line)
+	{
+		Point<T> n = getNormal();
+		double t = ((m_A - line.m_B) & n) / ((line.m_A - line.m_B) & n);
+		
+		return t*line.m_A + (1 - t)*line.m_B;
+	}
+	
+	Point<T> crossIn(Line<T> & line)
+	{
+		Point<T> n = getNormal();
+		T t = ((m_A - line.m_B) & n) / ((line.m_A - line.m_B) & n);
+		
+		Point<T> res;
+		
+		if( (t > 0 && t <1) || fp_zero(t) || fp_zero(1 - t)){
+			res = (t*line.m_A + (1 - t)*line.m_B);
+		}else res.makeNaN();
+		
+		return res;
+	}
+	
+	int oneSide(const Point<T> & p1, const Point<T> & p2)
+	{
+		Point<T> n = getNormal();
+		return Signum((p1 - m_A) & n) == Signum((p2 - m_A) & n);
+	}
 	
 	template<class TArchive>
 	void linkArchive(TArchive & ar)

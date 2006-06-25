@@ -5,7 +5,7 @@
 
 #include "Packing/Packing.h"
 
-#include "Math.h"
+#include "Math.hpp"
 
 namespace Geometry
 {

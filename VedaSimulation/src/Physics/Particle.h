@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "Geometry/Point.h"
+#include "Geometry/Point.hpp"
 #include "Packing/Archive.h"
 
 using namespace std;

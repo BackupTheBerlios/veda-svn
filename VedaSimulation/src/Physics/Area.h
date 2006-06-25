@@ -4,9 +4,9 @@
 
 #include <string>
 
-#include "../Geometry/Grid.h"
+#include "Geometry/Grid.hpp"
 
-#include "../Packing/Archive.h"
+#include "Packing/Archive.h"
 
 #include "Particle.h"
 

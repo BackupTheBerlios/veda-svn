@@ -4,9 +4,9 @@
 
 #include <tinyxml/tinyxml.h>
 
-#include "Geometry/Point.h"
-#include "Geometry/Polygon.h"
-#include "Geometry/Grid.h"
+#include "Geometry/Point.hpp"
+#include "Geometry/Polygon.hpp"
+#include "Geometry/Grid.hpp"
 
 #include "Physics/Particle.h"
 

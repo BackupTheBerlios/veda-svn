@@ -5,9 +5,9 @@
 
 #include "Packing/Archive.h"
 
-#include "Point.h"
-#include "Line.h"
-#include "Polygon.h"
+#include "Point.hpp"
+#include "Line.hpp"
+#include "Polygon.hpp"
 
 using namespace std;
 
