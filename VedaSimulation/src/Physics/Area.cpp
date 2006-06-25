@@ -1,4 +1,4 @@
-#include "Area.h"
+#include "Area.hpp"
 
 namespace Physics
 {

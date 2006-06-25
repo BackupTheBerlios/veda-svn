@@ -4,21 +4,21 @@
 
 #include <tinyxml/tinyxml.h>
 
-#include "Log.h"
+#include "Log.hpp"
 
 #include "Geometry/Point.hpp"
 #include "Geometry/Polygon.hpp"
 #include "Geometry/Grid.hpp"
 
-#include "Packing/OArchive.h"
-#include "Packing/IArchive.h"
-#include "Packing/Archive.h"
+#include "Packing/OArchive.hpp"
+#include "Packing/IArchive.hpp"
+#include "Packing/Archive.hpp"
 
-#include "Packing/OXmlArchive.h"
-#include "Packing/IXmlArchive.h"
+#include "Packing/OXmlArchive.hpp"
+#include "Packing/IXmlArchive.hpp"
 
-#include "Physics/Particle.h"
-#include "Physics/Area.h"
+#include "Physics/Particle.hpp"
+#include "Physics/Area.hpp"
 
 using namespace std;
 

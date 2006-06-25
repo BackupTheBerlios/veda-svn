@@ -1,7 +1,7 @@
 #ifndef NETARCHIVE_H_
 #define NETARCHIVE_H_
 
-#include "Archive.h"
+#include "Archive.hpp"
 
 namespace Packing
 {

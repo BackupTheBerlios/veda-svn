@@ -6,9 +6,9 @@
 
 #include "Geometry/Grid.hpp"
 
-#include "Packing/Archive.h"
+#include "Packing/Archive.hpp"
 
-#include "Particle.h"
+#include "Particle.hpp"
 
 using namespace std;
 

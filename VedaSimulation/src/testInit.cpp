@@ -8,12 +8,12 @@
 #include "Geometry/Polygon.hpp"
 #include "Geometry/Grid.hpp"
 
-#include "Physics/Particle.h"
+#include "Physics/Particle.hpp"
 
-#include "Packing/OArchive.h"
-#include "Packing/IArchive.h"
+#include "Packing/OArchive.hpp"
+#include "Packing/IArchive.hpp"
 
-#include "Log.h"
+#include "Log.hpp"
 
 using namespace std;
 

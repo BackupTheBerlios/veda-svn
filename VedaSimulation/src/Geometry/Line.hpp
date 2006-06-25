@@ -1,7 +1,7 @@
 #ifndef LINE_H_
 #define LINE_H_
 
-#include "Packing/Packing.h"
+#include "Packing/Packing.hpp"
 
 #include "Math.hpp"
 #include "Point.hpp"

@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "Packing/Archive.h"
+#include "Packing/Archive.hpp"
 
 #include "Point.hpp"
 #include "Line.hpp"

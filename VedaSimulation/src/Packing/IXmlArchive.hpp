@@ -6,7 +6,7 @@
 
 #include <tinyxml/tinyxml.h>
 
-#include "XmlArchive.h"
+#include "XmlArchive.hpp"
 
 using namespace std;
 
