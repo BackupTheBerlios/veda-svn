@@ -2,14 +2,24 @@ import os
 
 BuildDir('bin', 'src', duplicate=0)
 
+BuildDir('lib', 'wrap', duplicate=0)
+
+
 env = Environment(
 	platform='win32', 
 	ENV = {'PATH' : os.environ['PATH']}, 
 	tools=['mingw', 'zip'],
 	CPPPATH=['#/external','#/src'])
 	
+envWrap = Environment(
+					   )
+	
 Export('env')
+Export('envExternal')
+Export('envWrap')
 
-env.SConscript('external/SConscript', 'env')
+env.SConscript('external/SConscript', 'envExternal')
 
 env.SConscript('bin/SConscript', 'env')
+
+env.SConscript('lib/SConscript', 'envWrap')

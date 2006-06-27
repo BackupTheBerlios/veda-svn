@@ -24,7 +24,7 @@ namespace Physics
 template<class TPhys, class TMath>
 class Area
 {
-	Grid<TMath> m_grid;
+	Grid m_grid;
 	Particle<TPhys, TMath> m_particle;
 	Particle<TPhys, TMath> m_ethalon;
 	
@@ -37,8 +37,8 @@ public:
 	
 	void initTest()
 	{
-		m_particle = Point<TMath>(1, 1);
-		m_ethalon = Point<TMath>(4, 5);
+		m_particle = Point(1, 1);
+		m_ethalon = Point(4, 5);
 	}
 	
 	template<class TArchive>

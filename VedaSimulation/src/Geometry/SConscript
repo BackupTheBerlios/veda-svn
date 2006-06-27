@@ -2,4 +2,4 @@
 
 Import('env')
 
-#env.Object()
+env.Object("Line.cpp")

@@ -73,7 +73,7 @@ int main(int argc, char** argv)
 	
 	/* polygon out */
 	
-	Polygon<double> poly;
+	Polygon poly;
 	
 	OXmlArchive oxml2(cout);
 	

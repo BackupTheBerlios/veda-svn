@@ -11,16 +11,15 @@ using namespace std;
 namespace Geometry
 {
 
-template<class T>
 class Polygon
 {
-	vector<Point<T> > points;
-	Point<T> center;
+	vector<Point> points;
+	Point center;
 	
-	T m_minManhat;
-	T m_maxManhat;
-	T m_minRadius;
-	T m_maxRadius;
+	double m_minManhat;
+	double m_maxManhat;
+	double m_minRadius;
+	double m_maxRadius;
 public:
 	Polygon(const int n_size = 16):
 		center(0)
@@ -35,16 +34,16 @@ public:
 	
 	/* operators */
 		
-	Polygon& operator=(const Polygon& n_poly)
+	Polygon& operator=(const Polygon& rhs)
 	{
 		points = rhs.points;
 		center = rhs.center;
 		return *this;
 	}
 	
-	Point<T> operator[](int i) { return points[i]; }
+	Point operator[](int i) { return points[i]; }
 	
-	Polygon & operator<<(const Point<T> & p)
+	Polygon & operator<<(const Point & p)
 	{
 		points.push_back(p);
 		return *this;
@@ -55,23 +54,23 @@ public:
 	int size(){return points.size(); }
 	int getNum(){return points.size(); }
 	
-	Line<T> side(const int i)
+	Line side(const int i)
 	{
-		return Line<T>(points[i], points[(i + 1) % size()]);
+		return Line(points[i], points[(i + 1) % size()]);
 	}
 	
-	void add(const Point<T> & p) { points.push_back(p); }
+	void add(const Point & p) { points.push_back(p); }
 
 	void clear() { points.clear(); }
 
 	
-	void square(T a)
+	void square(double a)
 	{
 		clear();
-		add(Point<T>(-a, -a));
-		add(Point<T>(-a, a));
-		add(Point<T>(a, a));
-		add(Point<T>(a, -a));
+		add(Point(-a, -a));
+		add(Point(-a, a));
+		add(Point(a, a));
+		add(Point(a, -a));
 	}
 	
 	/* center */
@@ -85,9 +84,9 @@ public:
 		center /= size();
 	}
 	
-	Point<T> calcedCenter()
+	Point calcedCenter()
 	{
-		Point<T> c = 0;
+		Point c = 0;
 		for(int i = 0; i < size(); ++i){
 			c += points[i];	
 		}
@@ -95,72 +94,72 @@ public:
 		return c;
 	}
 	
-	Point<T> getCenter(){ return center; }
-	void setCenter(const Point<T> & p){ center = p; }
+	Point getCenter(){ return center; }
+	void setCenter(const Point & p){ center = p; }
 	
 	/* different radiai */
 	
-	T averageRadius()
+	double averageRadius()
 	{
-		T r = 0;
+		double r = 0;
 		for(int i = 0; i <size(); ++i) r += !(center - points[i]);
 		r /= size();
 		return r;
 	}
 	
-	T maxRadius()
+	double maxRadius()
 	{
-		T r = 0, t;
+		double r = 0, t;
 		for(int i = 0; i < size(); ++i)
 			if(r < (t = center.distance(points[i]))) r = t;
 		return r;
 	}
 	
-	T minRadius()
+	double minRadius()
 	{
-		T r = 0, t;
+		double r = 0, t;
 		for(int i = 0; i < size(); ++i)
 			if(r > (t = center.distance(points[i]))) r = t;
 		return r;
 	}
 	
-	T maxManhatRadius()
+	double maxManhatRadius()
 	{
-		T r = 0, t;
+		double r = 0, t;
 		for(int i = 0; i < size(); ++i)
 			if(r < (t = (center.manhatTo(points[i])))) r =t;
 		return r;
 	}
 	
-	T minManhatRadius()
+	double minManhatRadius()
 	{
-		T r = 0, t;
+		double r = 0, t;
 		for(int i = 0; i < size(); ++i)
-			if(r > (t = (m_Center.manhatTo(points[i])))) r = t;
+			if(r > (t = (center.manhatTo(points[i])))) r = t;
 		return r;
 	}
 	
 	/* place of point */
 	
-	T area()
+	double area()
 	{
-		T ar = 0;
+		double ar = 0;
 		for(int i = 0; i < size(); ++i){
 			ar += points[i] ^ points[(i+1) % size()];
 		}
 		ar *= 0.5;
-		return fp_abs(ar);
+		return Abs(ar);
 	}
 	
 	/* main function of all project */
 	
-	int cutWith(Line<T> &line) 
+	int cutWith(Line &line) 
 	{ 
 		int i1, i2, i, j;
-		Line<T> segm;
-		Point<T> p1, p2, c = getCenter();
+		Line segm;
+		Point p1, p2, c = getCenter();
 		
-		std::vector<Point<T> > tmpPoints;
+		std::vector<Point > tmpPoints;
 		tmpPoints.reserve(points.size() + 2);
 		
 		int kFound = 0;
@@ -241,18 +240,18 @@ public:
 	
 	/* place of point */
 	
-	int nearSide(const Point<T> & v, const T r)
+	int nearSide(const Point & v, const double r)
 	{
 		
 		if(distance(v, center) > m_maxRadius + r) return 0;
 			
 		int kNear = 0;
 		int i;
-		T t;
-		Point<T> a, b;
-		Point<T> ab, n, v_par, vb;
-		T dist;
-		Line<T> line;
+		double t;
+		Point a, b;
+		Point ab, n, v_par, vb;
+		double dist;
+		Line line;
 		
 		for(i = 0; i < size() && !kNear; ++i){
 			line = side(i);
@@ -263,7 +262,7 @@ public:
 			if(dist < r){
 				v_par = v - n * ((v - a) & n);
 				vb = v_par - b;
-				t = (vb.getX() + vb.getY()) / (ab.getX() + ab.getY());
+				t = (vb.x + vb.y) / (ab.x + ab.y);
 				if(t > 0 && t < 1) kNear =1;
 			}
 		}
@@ -277,15 +276,15 @@ public:
 		return kNear;
 	}
 	
-	int contains(const Point<T>& p)
+	int contains(const Point& p)
 	{
 		if(distance(p, center) > m_maxRadius) return 0;
 		
 		int kOk = 1;
 		int i;
 	
-		Point<T> c = center;
-		Line<T> line;
+		Point c = center;
+		Line line;
 		
 		for(i = 0; i < size(); ++i){
 			line = side(i);
@@ -297,12 +296,12 @@ public:
 		return kOk;
 	}
 	
-	int nearOutside(const Point<T>& v, const T r)
+	int nearOutside(const Point& v, const double r)
 	{
 		return (!contains(v) && nearSide(v, r));
 	}
 	
-	int nearInside(const Point<T>& v, const T r)
+	int nearInside(const Point& v, const double r)
 	{
 		return (contains(v) && nearSide(v, r));
 	}

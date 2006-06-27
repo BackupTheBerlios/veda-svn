@@ -14,13 +14,12 @@ using namespace std;
 namespace Geometry
 {
 
-template<class TReal>
 class Grid
 {
-	vector<Polygon<TReal> > domens;
-	vector<Point<TReal> > centers;
+	vector<Polygon> domens;
+	vector<Point> centers;
 	
-	Point<TReal> center;
+	Point center;
 public:
 	Grid() { }
 
@@ -35,7 +34,7 @@ public:
 	
 	void test()
 	{
-		Line<double> llline;
+		Line llline;
 	}
 	
 	template<class TArchive>

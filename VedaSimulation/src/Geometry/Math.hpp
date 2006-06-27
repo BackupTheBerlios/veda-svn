@@ -8,67 +8,57 @@ namespace Geometry
 	
 /* wrapped mathematics */
 
-template<class T>
-inline T Rand()
+inline double Rand()
 {
-	return static_cast<T>((rand() % 10000) * 1e-4);
+	return static_cast<double>((rand() % 10000) * 1e-4);
 }
 
-template<class T>
-inline T Abs(const T &a)
+inline double Abs(const double &a)
 {
 	return (a > 0) ? a : -a;
 }
 
-template<class T>
-inline T Sqrt(const T &a)
+inline double Sqrt(const double &a)
 {
-	return static_cast<T>(sqrt(static_cast<double>(a)));
+	return static_cast<double>(sqrt(static_cast<double>(a)));
 }
 
-template<class T>
-inline T Sqr(const T &a)
+inline double Sqr(const double &a)
 {
 	return a*a;
 }
 
-template<class T>
-inline T Cub(const T &a)
+inline double Cub(const double &a)
 {
 	return a*a*a;
 }
 
 /* create insane */
 
-template<class T>
-inline T Nan()
+inline double Nan()
 {
-	T z = 0, y = 0;
+	double z = 0, y = 0;
 	return y / z;
 }
 
-template<class T>
-inline T Inf()
+inline double Inf()
 {
-	T z =0;
+	double z =0;
 	return 1 / z;
 }
 
 /* check */
 
-template<class T>
-inline bool isZero(const T &a)
+inline bool isZero(const double &a)
 {
 	return (Abs(a) < 1e-40);
 }
 
-template<class T>
-inline bool isInf(const T &a)
+inline bool isInf(const double &a)
 {
 	return (Abs(a) > 1e+40);
 }
 
-template<class T>
 inline bool isValid(const double &a)
 {
 	return ((a == a) && (Abs(a) < 1e+40));
@@ -76,22 +66,19 @@ inline bool isValid(const double &a)
 
 /* compare */
 
-template<class T>
-inline int Signum(const T &a)
+inline int Signum(const double &a)
 {
 	if( a > 0 ) return 1;
 	if( a < 0 ) return -1;
 	return 0;
 }
 
-template<class T>
-inline double Max(const T &a, const T &b)
+inline double Max(const double &a, const double &b)
 {
 	return ((a > b) ? a : b);
 }
 
-template<class T>
-inline double Min(const T &a, const T &b)
+inline double Min(const double &a, const double &b)
 {
 	return ((a > b) ? b : a);
 }

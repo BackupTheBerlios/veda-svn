@@ -9,22 +9,21 @@
 namespace Geometry
 {
 
-template<class T>
 class Line
 {
 protected:
-	Point<T> a, b;
+	Point a, b;
 public:
 	Line():
 		a(0), b(0)
 	{ }
 
-	Line(const Point<T> & n_a, const Point<T> & n_b): 
+	Line(const Point & n_a, const Point & n_b): 
 		a(n_a), b(n_b) 
 	{ } 
 	
-	Line(const T x1, const T y1, const T x2, const T y2): 
-		a(Point<T>(x1, y1)), b(Point<T>(x2, y2))
+	Line(const double x1, const double y1, const double x2, const double y2): 
+		a(Point(x1, y1)), b(Point(x2, y2))
 	{ }
 	
 	Line(const Line & rhs):
@@ -39,59 +38,31 @@ public:
 	
 	/* get, set */
 		
-	Point<T> getA() {return a; }
-	Point<T> getB() {return b; }
+	Point getA() {return a; }
+	Point getB() {return b; }
 	
-	void setA(const Point<T> & p){ a = p; }
-	void setB(const Point<T> & p){ b = p; }
+	void setA(const Point & p){ a = p; }
+	void setB(const Point & p){ b = p; }
 	
 	/* some routines */
 	
-	T length() { return (a - b).modulus(); }
+	double length() { return (a - b).modulus(); }
 	
-	T distance(const Point<T> & p)
+	double distance(const Point & p)
 	{
-		Point<T> n = (a - b).turned().normalized();
+		Point n = (a - b).turned().normalized();
 		return Abs((a - p) & n);
 	}
 	
-	Point<T> getNormal() {return (a - b).turned(); }
+	Point getNormal() {return (a - b).turned(); }
 	
 	/* checks */
 	
-	Point<T> cross(Line& line);
+	Point cross(Line& line);
 	
-	Point<T> crossIn(Line& line);
+	Point crossIn(Line& line);
 	
-	int oneSide(const Point<T> & p1, const Point<T> & p2);
-	
-	Point<T> cross(Line& line)
-	{
-		Point<T> n = getNormal();
-		double t = ((m_A - line.m_B) & n) / ((line.m_A - line.m_B) & n);
-		
-		return t*line.m_A + (1 - t)*line.m_B;
-	}
-	
-	Point<T> crossIn(Line<T> & line)
-	{
-		Point<T> n = getNormal();
-		T t = ((m_A - line.m_B) & n) / ((line.m_A - line.m_B) & n);
-		
-		Point<T> res;
-		
-		if( (t > 0 && t <1) || fp_zero(t) || fp_zero(1 - t)){
-			res = (t*line.m_A + (1 - t)*line.m_B);
-		}else res.makeNaN();
-		
-		return res;
-	}
-	
-	int oneSide(const Point<T> & p1, const Point<T> & p2)
-	{
-		Point<T> n = getNormal();
-		return Signum((p1 - m_A) & n) == Signum((p2 - m_A) & n);
-	}
+	int oneSide(const Point & p1, const Point & p2);
 	
 	template<class TArchive>
 	void linkArchive(TArchive & ar)
