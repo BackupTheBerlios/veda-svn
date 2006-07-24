@@ -1,0 +1,7 @@
+Import('env')
+
+tiObjs = env.SConscript(dirs='tinyxml', exports='env')
+
+Export('tiObjs')
+env.SConscript(dirs='Simulation', exports=['env', 'tiObjs'])
+env.SConscript(dirs='Wrap')

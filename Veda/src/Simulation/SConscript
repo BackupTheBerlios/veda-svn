@@ -1,0 +1,12 @@
+Import(['env', 'tiObjs'])
+    
+objs = []
+objs += tiObjs
+objs += env.SConscript(dirs='Packing', exports='env')
+
+print "Objs:"
+
+for obj in objs:
+    print ">>%s" % obj
+    
+env.Program('main.exe', ['main.cpp'] + objs)

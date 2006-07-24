@@ -1,0 +1,78 @@
+#
+#    Veda build script
+#
+
+from os import environ
+from os.path import join
+
+pathVedaSimulation = '#VedaSimulation'
+pathVedaEditor = '#VedaShell'
+
+#
+#    Construct enironments
+#
+
+#    unix environment
+#
+
+envUnix = Environment(
+                   CPPPATH='#src',
+                   platform='win32',
+                   ENV = {'PATH': environ['PATH']},
+                   tools=['gcc']
+                   )
+                   
+#    win32 environment
+#
+
+#    mingw
+
+envWinG = Environment(
+                   CPPPATH=['#src', '#src/Simulation'],
+                   platform='win32',
+                   ENV = {'PATH': environ['PATH']},
+                   tools=['mingw']
+                   )
+
+#    msvs
+
+envWinM = Environment(
+                   CPPPATH='#src',
+                   platform='win32',
+                   ENV = {'PATH': environ['PATH']},
+                   tools=['msvs']
+                   )
+
+#
+#    Choose target
+#
+
+#    simulation
+
+env = envWinG
+
+#    editor
+#
+
+#    script
+
+#    binary
+
+Export('env')
+
+#
+#    Build tagets
+#
+
+env.SConscript(dirs='#src', exports=['env'], build_dir='#build', duplicate=0)
+
+#
+#    Install
+#
+
+env.Install(join(pathVedaSimulation, 'bin'), '#build/Simulation/main.exe')
+
+env.Install(join(pathVedaEditor, 'bin'), '#src/Shell/test_geo.py')
+env.Install(join(pathVedaEditor, 'bin'),'geometry.py')
+env.Install(join(pathVedaEditor, 'bin'),'#build/Wrap/_geometry.dll')
+

@@ -1,0 +1,5 @@
+Import('env')
+
+myObjs = env.Object(['Archive.cpp', 'IXmlArchive.cpp', 'OXmlArchive.cpp'])
+
+Return('myObjs')

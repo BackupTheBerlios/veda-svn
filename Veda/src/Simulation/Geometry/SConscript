@@ -1,0 +1,7 @@
+# Geometry build
+
+Import('env')
+
+objs = env.Object(["Point.cpp", "Line.cpp"])
+
+Return('objs')
