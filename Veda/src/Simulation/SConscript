@@ -1,12 +1,15 @@
-Import(['env', 'tiObjs'])
+Import('env', 'tiObjs')
+
+print "#Simulation SCript"
+
+Export('env')
     
 objs = []
 objs += tiObjs
 objs += env.SConscript(dirs='Packing', exports='env')
-
-print "Objs:"
-
-for obj in objs:
-    print ">>%s" % obj
     
-env.Program('main.exe', ['main.cpp'] + objs)
+print "Go build program main.exe"
+
+objs += env.Object('main.cpp')
+
+env.Program('main.exe', objs)

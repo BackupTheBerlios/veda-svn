@@ -5,5 +5,4 @@ env.Append(CPPFLAGS='-DTIXML_USE_STL')
 objs = env.Object(['tinyxml.cpp', 'tinystr.cpp',
                     'tinyxmlerror.cpp', 'tinyxmlparser.cpp'])
 
-
 Return('objs')

@@ -12,9 +12,6 @@ oar = OXmlArchive()
 dx = 3.14
 ix = 314
 
-bar(dx)
-bar(ix)
-
 print "\nNext test\n"
 
 omg  = Omg(10)

@@ -2,6 +2,8 @@
 
 Import('env')
 
+print "Geometry SCript"
+
 objs = env.Object(["Point.cpp", "Line.cpp"])
 
 Return('objs')

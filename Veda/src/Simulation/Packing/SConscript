@@ -1,5 +1,7 @@
 Import('env')
 
-myObjs = env.Object(['Archive.cpp', 'IXmlArchive.cpp', 'OXmlArchive.cpp'])
+print "Packing SCript"
 
-Return('myObjs')
+objs = env.Object(['Archive.cpp', 'IXmlArchive.cpp', 'OXmlArchive.cpp'])
+
+Return('objs')

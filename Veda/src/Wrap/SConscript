@@ -1,12 +1,13 @@
-#swig_exe = "C:\\Progi\\cygwin\\bin\\swig.exe" # 1.3.19
+print "#src/Wrap SCript"
+
 swig_exe="C:\\_develop\\_local\\swig\\swig.exe" # 1.3.29
 python_lib = "C:\\Python\\libs"
 python_inc = "C:\\Python\\include"
 
 env = Environment(
     platform='win32',
-    tools=['default', 'swig'],
-    CCFLAGS=['/EHsc', '-D_WIN32', '-W0', '-I' + '#/src', '-I' + '#/src/Wrap', '-DTIXML_USE_STL'],
+    tools=['mingw', 'swig'],
+    CCFLAGS=['-D_WIN32', '-fpermissive', '-W0', '-I' + '#/src', '-I' + '#/src/Wrap', '-DTIXML_USE_STL'],
     CPPPATH=['#src', '#src/Simulation', '#src/Wrap', python_inc],
     LIBS=['python24'],
     LIBPATH=['.', python_lib],
@@ -17,9 +18,11 @@ env = Environment(
     
 Export('env')
 
+
 objs = []
 objs += env.SConscript(dirs='#src/tinyxml', exports='env')
 objs += env.SConscript(dirs='#src/Simulation/Packing', exports='env')
 objs += env.SConscript(dirs='#src/Simulation/Geometry', exports='env')
 
 env.SharedLibrary('_geometry', ['geometry.i'] + objs)
+

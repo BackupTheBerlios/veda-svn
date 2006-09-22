@@ -2,4 +2,6 @@
 
 Import('env')
 
-env.Object(['Area.cpp', 'Particle.cpp'])
+objs = env.Object(['Area.cpp', 'Particle.cpp'])
+
+Return('objs')

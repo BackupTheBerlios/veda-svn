@@ -2,8 +2,17 @@
 #    Veda build script
 #
 
+import os
 from os import environ
 from os.path import join
+
+
+#    system information
+
+osName = os.name
+pathCurrent = os.path.abspath(os.curdir)
+
+#    default target paths
 
 pathVedaSimulation = '#VedaSimulation'
 pathVedaEditor = '#VedaShell'
@@ -12,51 +21,32 @@ pathVedaEditor = '#VedaShell'
 #    Construct enironments
 #
 
-#    unix environment
-#
+env = Environment()
 
-envUnix = Environment(
-                   CPPPATH='#src',
-                   platform='win32',
-                   ENV = {'PATH': environ['PATH']},
-                   tools=['gcc']
-                   )
-                   
-#    win32 environment
-#
+envPlatform = env['PLATFORM']
 
-#    mingw
+if envPlatform == 'win32':
+    env.Tool('mingw')
+elif envPlatform == 'posix':
+    env.Tool('gcc')
+else:
+    Exit('Unknown OS')
+    
+#print " :> Original ENV "
+#dict = env.Dictionary()
+#for key in ['PLATFORM', 'TOOLS']:
+#    print "%s => %s" % (key, dict[key])
 
-envWinG = Environment(
-                   CPPPATH=['#src', '#src/Simulation'],
-                   platform='win32',
-                   ENV = {'PATH': environ['PATH']},
-                   tools=['mingw']
-                   )
+env.Replace(ENV={'PATH': environ['PATH']})
+env.Prepend(CPPPATH=['#src', '#src/Simulation'])    
+env.Append(CPPFLAGS=['-fpermissive'])
 
-#    msvs
 
-envWinM = Environment(
-                   CPPPATH='#src',
-                   platform='win32',
-                   ENV = {'PATH': environ['PATH']},
-                   tools=['msvs']
-                   )
 
 #
 #    Choose target
 #
 
-#    simulation
-
-env = envWinG
-
-#    editor
-#
-
-#    script
-
-#    binary
 
 Export('env')
 
@@ -64,7 +54,7 @@ Export('env')
 #    Build tagets
 #
 
-env.SConscript(dirs='#src', exports=['env'], build_dir='#build', duplicate=0)
+env.SConscript(dirs='#src', exports='env', build_dir='#build', duplicate=0)
 
 #
 #    Install
@@ -75,4 +65,6 @@ env.Install(join(pathVedaSimulation, 'bin'), '#build/Simulation/main.exe')
 env.Install(join(pathVedaEditor, 'bin'), '#src/Shell/test_geo.py')
 env.Install(join(pathVedaEditor, 'bin'),'geometry.py')
 env.Install(join(pathVedaEditor, 'bin'),'#build/Wrap/_geometry.dll')
+
+
 
