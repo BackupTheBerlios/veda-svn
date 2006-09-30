@@ -1,10 +1,8 @@
-print "#src/Wrap SCript"
-
 swig_exe="C:\\_develop\\_local\\swig\\swig.exe" # 1.3.29
 python_lib = "C:\\Python\\libs"
 python_inc = "C:\\Python\\include"
 
-env = Environment(
+envWrap = Environment(
     platform='win32',
     tools=['mingw', 'swig'],
     CCFLAGS=['-D_WIN32', '-fpermissive', '-W0', '-I' + '#/src', '-I' + '#/src/Wrap', '-DTIXML_USE_STL'],

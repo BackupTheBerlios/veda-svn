@@ -9,6 +9,11 @@ from os.path import join
 
 #    system information
 
+settingsWin = {"swig": "C:\\_develop\\_local\\swig\\swig.exe",
+                "pythonInclude": "C:\\Python\\include",
+                "pythonLib": "C:\\Python\\libs"}
+                
+
 osName = os.name
 pathCurrent = os.path.abspath(os.curdir)
 
