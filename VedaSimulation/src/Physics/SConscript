@@ -1,5 +1,0 @@
-# Physics build
-
-Import('env')
-
-env.Object(['Area.cpp', 'Particle.cpp'])

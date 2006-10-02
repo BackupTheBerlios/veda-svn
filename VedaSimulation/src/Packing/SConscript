@@ -1,5 +1,0 @@
-# Packing build
-
-Import('env')
-
-env.Object(['Archive.cpp'])
